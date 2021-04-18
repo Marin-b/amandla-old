@@ -1,3 +1,5 @@
-<nav class="nav flex flex-wrap items-center justify-between px-4">
-
+<nav class="nav flex flex-wrap items-center justify-between px-4  <%= is_home ? 'bg-transparent fixed w-full' : 'bg-darkgreen' %>">
+  <div class="container mx-auto md:py-8 py-4">
+    <%= small_logo unless is_home %>
+  </div>
 </nav>

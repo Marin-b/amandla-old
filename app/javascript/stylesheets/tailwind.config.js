@@ -20,8 +20,9 @@ module.exports = {
       white: colors.white,
       gray: colors.coolGray,
       red: colors.red,
-      yellow: colors.amber,
-      green: colors.emerald,
+      yellow: { DEFAULT: "#F7D383" },
+      green: { DEFAULT: "#299D90" },
+      darkgreen: { DEFAULT: "#1D373C" },
       blue: colors.blue,
       indigo: colors.indigo,
       purple: colors.violet,
@@ -235,7 +236,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
-        'ui-sans-serif',
+        'montserrat',
         'system-ui',
         '-apple-system',
         'BlinkMacSystemFont',

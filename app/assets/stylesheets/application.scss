@@ -5,3 +5,8 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+.btn  {
+  color: red;
+  @apply bg-darkgreen text-yellow
+}
