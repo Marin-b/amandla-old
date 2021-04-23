@@ -1,4 +1,4 @@
-<div class='h-50vh md:h-75vh bg-cover bg-center bg-no-repeat' style='background-image:  url(<%= @place.banner_url %>)'>
+<div class='h-v1/2 md:h-v3/4 bg-cover bg-center bg-no-repeat' style='background-image:  url(<%= @place.banner_url %>)'>
 </div>
 <div class='container px-4 md:px-0 mx-auto grid grid-cols-12 gap-8 -mt-8 md:-mt-12'>
   <div class='col-span-12 md:col-span-8'>
@@ -10,23 +10,46 @@
         <%= @place.category.name %>
       </h6>
     </div>
-    <div class='grid mt-4 md:mt-8 gap-2 grid-cols-5 md:grid-cols-7 xl:grid-cols-12'>
-      <a href='#about'>About</a>
+    <div class='grid mt-4 md:mt-8 gap-2 grid-cols-5 md:grid-cols-7 xl:grid-cols-12 font-bold text-lg'>
+      <a class='text-green' href='#about'>About</a>
       <a href='#gallery'>Gallery</a>
       <a href='#reviews'>Reviews</a>
       <a href='#map'>Map</a>
     </div>
     <div id="about" class='mt-8'>
-      <h3>
+      <h3 class='section-title'>
         About
       </h3>
       <p>
         <%= @place.story %>
       </p>
+      <div class='flex-col items-center flex md:flex-row md:text-left text-center mt-8'>
+        <div class="avatar" style='background-image:  url(<%= @place.user.photo.url %>)'>
+        </div>
+        <div class="text md:ml-4">
+          <p class='text-opacity-80 text-black'>
+            Owned by
+          </p>
+          <h6 class='font-bold text-lg'>
+            <%= @place.user.full_name %>
+          </h6>
+        </div>
+      </div>
+      <p class='mt-4 text-center md:text-left'>
+        <%= @place.user.about %>
+      </p>
     </div>
-    <div id="about" class='mt-8'>
-      <h3>
+    <div id="gallery" class='mt-8'>
+      <h3 class='section-title'>
         Gallery
+      </h3>
+      <p>
+        <%= @place.story %>
+      </p>
+    </div>
+    <div id="reviews" class='mt-8'>
+      <h3 class='section-title'>
+        Reviews
       </h3>
       <p>
         <%= @place.story %>
@@ -34,7 +57,7 @@
     </div>
   </div>
   <div class="col-span-4 h-48 bg-white shadow-md rounded-xl hidden md:block">
-
+    <%= render Rating::Stars.new(0.3) %>
   </div>
 </div>
 

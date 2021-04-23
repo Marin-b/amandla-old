@@ -252,6 +252,7 @@ module.exports = {
         '"Segoe UI Symbol"',
         '"Noto Color Emoji"',
       ],
+      title: ["nunito"],
       serif: ['ui-serif', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
       mono: [
         'ui-monospace',
@@ -424,6 +425,8 @@ module.exports = {
       '3/6': '50%',
       '4/6': '66.666667%',
       '5/6': '83.333333%',
+      'v1/2': '50vh',
+      'v3/4': '75vh',
       full: '100%',
       screen: '100vh',
     }),

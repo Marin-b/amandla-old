@@ -1,3 +1,13 @@
 p {
   // @apply md:text-sm text-xs font-light
 }
+
+
+h3.section-title {
+  @apply text-xl md:text-2xl inline relative font-bold mb-4
+}
+
+h3.section-title::after {
+  content: "";
+  @apply absolute -bottom-0.5 h-1 bg-green w-5/6 -right-2
+}

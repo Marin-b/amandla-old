@@ -13,9 +13,11 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar', is_home: action_name == 'home' %>
+    <% contained = !(['pages#home', 'places#index'].include? "#{controller_name}##{action_name}") %>
+    <%= render 'shared/navbar', transparent: action_name == 'home', contained: contained %>
     <%= render 'shared/flashes' %>
-
-    <%= yield %>
+    <div class="<%= contained && 'content-container' %>">
+      <%= yield %>
+    </div>
   </body>
 </html>

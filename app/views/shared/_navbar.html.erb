@@ -1,5 +1,7 @@
-<nav class="nav flex flex-wrap md:h-20 h-16 items-center justify-between px-4 fixed w-full top-0 z-50 <%= is_home ? 'bg-transparent ' : 'bg-darkgreen' %>">
-  <%= link_to root_path do %>
-    <%= small_logo unless is_home %>
-  <% end %>
+<nav class="nav flex flex-wrap md:h-20 h-16 items-center justify-between px-4 fixed w-full top-0 z-50 <%= transparent ? 'bg-transparent ' : 'bg-darkgreen' %>">
+  <div class='<%= contained && "container mx-auto" %>'>
+    <%= link_to root_path do %>
+      <%= small_logo unless transparent %>
+    <% end %>
+  </div>
 </nav>

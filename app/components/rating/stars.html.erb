@@ -1,0 +1,16 @@
+<div class="relative inline-block">
+  <div class='h-full w-full'>
+    <% 5.times do %>
+      <i class='fas fa-star fa-2x text-gray-100'></i>
+    <% end %>
+  </div>
+  <div class='absolute h-full top-0 left-0'>
+    <% 5.times do |i| %>
+      <% visibility = (rating - i) * 100 %>
+
+      <div class='h-full inline text-center'>
+        <i class='fas fa-star fa-2x text-yellow' style='clip-path: polygon(0% 0%, <%= visibility %>% 0%, <%= visibility %>% 100%, 0% 100%)'></i>
+      </div>
+    <% end %>
+  </div>
+</div>
