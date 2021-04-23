@@ -1,0 +1,24 @@
+.flip {
+  text-align: center;
+  position: relative;
+  // perspective: 600px;
+}
+.flip-content {
+  transition: transform 0.4s;
+  transform-style: preserve-3d;
+}
+.flip.animate .flip-content {
+  transform: rotateY(180deg);
+  transition-property: transform;
+  transition-duration: 0.5s;
+}
+
+.flip-front {
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+.flip-back {
+  position: absolute;
+  top: 0;
+  backface-visibility: hidden;
+}

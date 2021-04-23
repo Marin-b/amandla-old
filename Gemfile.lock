@@ -60,6 +60,8 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    acts-as-taggable-on (7.0.0)
+      activerecord (>= 5.0, < 6.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     autoprefixer-rails (10.2.4.0)
@@ -120,6 +122,7 @@ GEM
     ffi (1.15.0)
     font-awesome-sass (5.15.1)
       sassc (>= 1.11)
+    geocoder (1.6.7)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     http-accept (1.7.0)
@@ -279,6 +282,8 @@ GEM
       unf_ext
     unf_ext (0.0.7.7)
     uniform_notifier (1.14.2)
+    view_component (2.30.0)
+      activesupport (>= 5.0.0, < 7.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.1.0)
@@ -306,6 +311,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on (~> 7.0)
   autoprefixer-rails
   bootsnap (>= 1.4.4)
   bullet
@@ -318,6 +324,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   font-awesome-sass
+  geocoder
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg (~> 1.1)
@@ -338,6 +345,7 @@ DEPENDENCIES
   timecop
   turbolinks (~> 5)
   tzinfo-data
+  view_component
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)

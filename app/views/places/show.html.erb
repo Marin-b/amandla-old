@@ -1,0 +1,40 @@
+<div class='h-50vh md:h-75vh bg-cover bg-center bg-no-repeat' style='background-image:  url(<%= @place.banner_url %>)'>
+</div>
+<div class='container px-4 md:px-0 mx-auto grid grid-cols-12 gap-8 -mt-8 md:-mt-12'>
+  <div class='col-span-12 md:col-span-8'>
+    <div class='text-center bg-white py-2 md:py-4 flex-col shadow-md items-center justify-center rounded-xl w-full'>
+      <h1 class='text-darkgreen font-title text-xl md:text-4xl md:mb-2'>
+        <%= @place.name %>
+      </h1>
+      <h6 class='text-yellow md:text-xl text-base font-sans'>
+        <%= @place.category.name %>
+      </h6>
+    </div>
+    <div class='grid mt-4 md:mt-8 gap-2 grid-cols-5 md:grid-cols-7 xl:grid-cols-12'>
+      <a href='#about'>About</a>
+      <a href='#gallery'>Gallery</a>
+      <a href='#reviews'>Reviews</a>
+      <a href='#map'>Map</a>
+    </div>
+    <div id="about" class='mt-8'>
+      <h3>
+        About
+      </h3>
+      <p>
+        <%= @place.story %>
+      </p>
+    </div>
+    <div id="about" class='mt-8'>
+      <h3>
+        Gallery
+      </h3>
+      <p>
+        <%= @place.story %>
+      </p>
+    </div>
+  </div>
+  <div class="col-span-4 h-48 bg-white shadow-md rounded-xl hidden md:block">
+
+  </div>
+</div>
+

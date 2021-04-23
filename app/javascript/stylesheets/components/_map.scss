@@ -1,0 +1,16 @@
+#map {
+  top: theme('spacing.16');
+  height: calc(100vh - theme('spacing.16'));
+  @screen md {
+    top: theme('spacing.20');
+    height: calc(100vh - theme('spacing.20'));
+  }
+}
+
+.category-marker {
+  @apply p-1 bg-white text-darkgreen border-darkgreen border-2 rounded-full w-8 h-8 flex items-center justify-center cursor-pointer transition-all
+}
+
+.category-marker:hover, .category-marker.active {
+  @apply bg-darkgreen text-yellow w-10 h-10 z-50
+}

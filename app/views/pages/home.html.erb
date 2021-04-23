@@ -1,11 +1,11 @@
 <div class="banner">
-  <div class="container mx-auto h-full flex flex-col items-center justify-center w-50">
+  <div class="container mx-auto flex flex-col items-center justify-between pt-20 h-3/4 w-full md:w-1/2 px-4">
     <div class='text-center'>
       <%= logo width: '300px', style: 'margin: 0 auto' %>
-      <h1 class='semibold text-white text-4xl uppercase text-opacity-80 pt-4'>Help create the change</h1>
+      <h1 class='semibold text-white text-5xl text-opacity-80 pt-4'>Help create the change</h1>
     </div>
-    <div>
-      <a href="" class="btn btn-primary"> test</a>
+    <div class='w-full h-1/4 py-3 md:p-0'>
+      <%= render(Search::SearchComponent.new) %>
     </div>
   </div>
 </div>

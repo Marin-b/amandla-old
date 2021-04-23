@@ -1,3 +1,16 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@import "components/index";
+@import "config/index";
+
+
+.content-container {
+  margin-top: theme('spacing.16');
+  min-height: calc(100vh - theme('spacing.16'));
+  @screen md {
+    margin-top: theme('spacing.20');
+    min-height: calc(100vh - theme('spacing.20'));
+  }
+}

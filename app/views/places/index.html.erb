@@ -1,0 +1,12 @@
+<div class="flex w-full">
+  <div class="mx-auto pt-4 px-4 md:w-1/2 w-full content-container" data-controller='places--card'>
+    <%= render Search::SearchComponent.new %>
+    <div class='grid xl:grid-cols-2 grid-cols-1 gap-4 mt-4'>
+      <%= render Places::Card.with_collection(@places) %>
+    </div>
+  </div>
+  <div class="map w-1/2 hidden md:block sticky top-0 self-start" >
+    <%= render Places::Map.new(@places) %>
+  </div>
+</div>
+

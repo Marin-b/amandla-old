@@ -1,0 +1,15 @@
+<%= link_to place_path(place) do %>
+  <div class="place-card bg-white rounded shadow-md hover:shadow-lg transition-all" data-places--card-target='card' data-id='<%= place.id %>'>
+    <div class="h-52 w-full rounded bg-cover bg-center flex items-center justify-center relative" style='background-image: linear-gradient(180deg, rgba(52, 100, 109, 0.08) 0%, rgba(15, 29, 31, 0.6) 100%), url(<%= place.banner_url %>)'>
+      <%= render Category::Icon.new(place.category, classes: 'fa-lg text-white m-2 absolute top-4 left-4') %>
+      <h3 class='text-2xl text-white font-bold'>
+        <%= place.name %>
+      </h3>
+    </div>
+    <div class='md:pl-4 flex-grow'>
+      <div class="flex justify-between w-full">
+      </div>
+
+    </div>
+  </div>
+<% end %>

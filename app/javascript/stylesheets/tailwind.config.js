@@ -15,12 +15,12 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-
       black: colors.black,
       white: colors.white,
       gray: colors.coolGray,
       red: colors.red,
       yellow: { DEFAULT: "#F7D383" },
+      lightyellow: { DEFAULT: "#fef9ef"},
       green: { DEFAULT: "#299D90" },
       darkgreen: { DEFAULT: "#1D373C" },
       blue: colors.blue,
@@ -71,6 +71,7 @@ module.exports = {
       ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
       pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       bounce: 'bounce 1s infinite',
+      'fade-in-down': 'fade-in-down 0.5s ease-out'
     },
     backdropBlur: (theme) => theme('blur'),
     backdropBrightness: (theme) => theme('brightness'),
@@ -159,8 +160,8 @@ module.exports = {
     boxShadow: {
       sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
       DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-      md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-      lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+      md: '0 2px 6px -1px rgba(0, 0, 0, 0.1), 0 1px 4px -1px rgba(0, 0, 0, 0.06)',
+      lg: '0 4px 12px -3px rgba(0, 0, 0, 0.1), 0 2px 8px -2px rgba(0, 0, 0, 0.05)',
       xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
       '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
       inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
@@ -446,6 +447,16 @@ module.exports = {
       '-full': '-100%',
     }),
     keyframes: {
+      'fade-in-down': {
+        '0%': {
+          opacity: '0',
+          transform: 'translateY(-10px)'
+        },
+        '100%': {
+          opacity: '1',
+          transform: 'translateY(0)'
+        },
+      },
       spin: {
         to: {
           transform: 'rotate(360deg)',
@@ -701,10 +712,15 @@ module.exports = {
       'top-left': 'top left',
     },
     transitionDelay: {
+      25: '25ms',
+      50: '50ms',
       75: '75ms',
       100: '100ms',
+      125: '125ms',
       150: '150ms',
+      175: '175ms',
       200: '200ms',
+      250: '250ms',
       300: '300ms',
       500: '500ms',
       700: '700ms',
@@ -960,5 +976,14 @@ module.exports = {
     wordBreak: ['responsive'],
     zIndex: ['responsive', 'focus-within', 'focus'],
   },
-  plugins: [],
+  extend: {
+    typography: (theme) => ({
+      DEFAULT: {
+        css: {}
+      }
+    })
+  },
+  plugins: [
+    require('@tailwindcss/typography')
+  ]
 }

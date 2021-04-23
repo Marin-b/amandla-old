@@ -1,12 +1,8 @@
 // External libraries
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
-
-.btn  {
-  color: red;
-  @apply bg-darkgreen text-yellow
-}
