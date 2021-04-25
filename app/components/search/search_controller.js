@@ -1,38 +1,83 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "locationInput", "category", "categoryModal", "categoryCards" ]
+  static targets = [ "locationInput", "category", "tags"]
 
   connect() {
     this.location = this.locationInputTarget.value
     this.chosenCategory = this.categoryTarget.innerText
   }
 
-  openCategory() {
-    this.categoryModalTarget.classList.remove('hidden')
-    setTimeout(() => {
-      this.categoryCardsTargets.forEach(card => {
-        card.classList.add('animate')
-      })
-    }, 10)
+  openModal(e) {
+    this.modal = document.getElementById(e.target.dataset.modal)
+    this.modal.classList.remove('hidden')
+    this.modal.querySelectorAll('label').forEach(card => {
+      setTimeout(() => {
+        card.classList.add('flipped')
+      }, 10)
+    })
   }
 
-  closeCategory() {
-    this.categoryCardsTargets.forEach(card => {
-      if(card.dataset.category === this.chosenCategory) return
-
-      card.classList.remove('animate')
+  closeModal() {
+    this.modal.querySelectorAll('label').forEach(card => {
+      if (!card.lastElementChild.checked) {
+        card.classList.remove('flipped')
+      }
     })
 
-    setTimeout(() => {
-      this.categoryModalTarget.classList.add('hidden')
-    }, 500)
+    setTimeout(() => {this.modal.classList.add('hidden')}, 500)
+    this.setButtonContent()
   }
 
-  chooseCategory(e) {
-    this.chosenCategory = e.target.dataset.category
-    this.categoryTarget.innerText = this.chosenCategory
-    this.categoryCardsTargets.find((card) => card.dataset.category === this.chosenCategory).classList.add('border-green')
+  clearModal() {
+    this.modal.querySelectorAll('label').forEach(card => {
+      card.lastElementChild.checked = false
+    })
+    this.modal.lastElementChild.checked = true
+    this.updateLabels()
+    this.closeModal()
+  }
+
+  setButtonContent() {
+    const inputType = this.modal.querySelector('input').type
+    const button = this[this.modal.dataset.name + 'Target']
+    const checkedInput = Array.from(this.modal.querySelectorAll('input')).find(i => i.checked)
+
+    if (inputType === 'checkbox' && checkedInput !== this.modal.lastElementChild) {
+      button.innerText = `Selected ${this.modal.dataset.name}`
+    } else {
+      button.innerText = checkedInput.value
+
+    }
+  }
+
+  handleSelection(e) {
+    this.updateLabels()
+    const input = e.target.closest('label').lastElementChild
+
+    if (input.type === 'radio' && input.checked) {
+      this.closeModal()
+    }
+  }
+
+  handleBackgroundClick(e) {
+    if (e.target === this.modal) {
+      this.closeModal()
+    }
+  }
+
+  updateLabels()  {
+    this.modal.querySelectorAll('label').forEach((label) => {
+      const input = label.lastElementChild
+      const card = label.querySelector('.flip-front')
+      if (input.checked) {
+        card.classList.replace('border-darkgreen', 'border-green')
+        card.classList.replace('text-darkgreen', 'text-green')
+      } else {
+        card.classList.replace('border-green', 'border-darkgreen')
+        card.classList.replace('text-green', 'text-darkgreen')
+      }
+    })
   }
 
   locate(e){
@@ -51,9 +96,5 @@ export default class extends Controller {
       e.target.classList.remove('fa-circle-notch', 'fa-spin')
       e.target.classList.add('fa-times')
     })
-  }
-
-  submit() {
-    window.location = `/places?category=${this.chosenCategory}&location=${this.location}`
   }
 }

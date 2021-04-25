@@ -1,0 +1,29 @@
+<div id="<%= name %>Modal" data-action='click->search--search#handleBackgroundClick' class="hidden animated fixed inset-0 overflow-y-auto flex items-center justify-center bg-gray-800 bg-opacity-50" data-name='<%= name %>' style="z-index: 9999;">
+  <!-- Modal Inner Container -->
+  <div class="max-h-screen w-full max-w-xl relative">
+    <!-- Modal Card -->
+    <div class="m-1 bg-transparent rounded grid grid-cols-2 md:grid-cols-3 gap-5 px-5">
+      <% items.each_with_index do |item, i| %>
+        <label for='<%= item.name %>' data-action='click->search--search#handleSelection' class="flip h-36 <%= 'animate' if is_selected?(item) %>">
+          <div class='flip-content h-full <%= "delay-#{i * 50}" %>'  >
+            <div class="flip-front bg-yellow  <%= is_selected?(item) ? 'border-green text-green' : 'border-darkgreen text-darkgreen' %> category-card h-full relative" >
+              <%= render icon(item) %>
+              <p>
+                <%= item.name %>
+              </p>
+            </div>
+            <div class="flip-back bg-darkgreen border-darkgreen category-card  h-full w-full">
+
+            </div>
+          </div>
+          <input type="<%= input_type %>" class='hidden' <%= 'checked' if is_selected?(item) %> value='<%= item.name %>' form='search-form' name='<%= input_name %>' id='<%= item.name %>'>
+        </label>
+      <% end %>
+    </div>
+    <div class="text-center mt-6">
+      <button class="bg-darkgreen text-yellow font-bold py-2 px-10 mb-2 text-xl mx-auto block  rounded focus:outline-none" data-action='click->search--search#closeModal' >Close</button>
+      <button class=" text-yellow font-bold py-2 px-10 mb-5 mx-auto block focus:outline-none rounded " data-action='click->search--search#clearModal' >Clear</button>
+    </div>
+  </div>
+  <input type="<%= input_type %>" class='hidden' <%= 'checked' if none_chosen?  %> value='All <%= name.pluralize(2) %>' form='search-form' name='<%= input_name %>'>
+</div>

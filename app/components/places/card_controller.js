@@ -5,10 +5,8 @@ export default class extends Controller {
   static targets = ['card']
 
   connect() {
-    console.log('connected')
     this.cardTargets.forEach(card => {
       const id = card.dataset.id
-      console.log(id)
       card.addEventListener('mouseenter', () => this.activateMarker(id))
       card.addEventListener('mouseleave', () => this.deactivateMarker(id))
     })

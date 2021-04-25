@@ -7,7 +7,7 @@
   transition: transform 0.4s;
   transform-style: preserve-3d;
 }
-.flip.animate .flip-content {
+.flip.flipped .flip-content {
   transform: rotateY(180deg);
   transition-property: transform;
   transition-duration: 0.5s;
