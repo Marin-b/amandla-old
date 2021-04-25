@@ -2,7 +2,7 @@
   <div class="w-full flex h-full">
     <div class='h-full w-full'>
       <div class='h-1/2  w-full  bg-white border-none outline-none relative rounded-t'>
-        <input data-search--search-target='locationInput' value='<%= location %>' type="text" placeholder='Location' class='rounded-t font-bold w-full h-full px-2 text-center' >
+        <input data-search--search-target='locationInput' data-action='search--search#handleLocationChange' value='<%= location %>' type="text" placeholder='Location' class='rounded-t font-bold w-full h-full px-2 text-center' >
         <i data-action='click->search--search#locate' class="fas fa-map-marker-alt absolute top-4 right-4 text-darkgreen fa-lg cursor-pointer"></i>
       </div>
       <div class='h-1/2 pt-1 flex'>

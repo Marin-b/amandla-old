@@ -53,6 +53,10 @@ export default class extends Controller {
     })
   }
 
+  handleLocationChange() {
+    this.location = this.locationInputTarget.value
+  }
+
   submit() {
     window.location = `/places?category=${this.chosenCategory}&location=${this.location}`
   }
