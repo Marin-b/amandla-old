@@ -1,19 +1,20 @@
 <div data-controller='search--search' class="w-full font-bold h-28 border-4 box-border rounded border-darkgreen bg-darkgreen border-gray-50 overflow-hidden flex flex-col items-center max-w-4xl " >
   <div class="w-full flex h-full">
-    <div class='h-full w-full'>
+    <form action='/places' id='search-form' class='h-full w-full'>
       <div class='h-1/2  w-full  bg-white border-none outline-none relative rounded-t'>
-        <input data-search--search-target='locationInput' data-action='search--search#handleLocationChange' value='<%= location %>' type="text" placeholder='Location' class='rounded-t font-bold w-full h-full px-2 text-center' >
+        <input name='location' data-search--search-target='locationInput' value='<%= location %>' type="text" placeholder='Location' class='rounded-t font-bold w-full h-full px-2 text-center' >
         <i data-action='click->search--search#locate' class="fas fa-map-marker-alt absolute top-4 right-4 text-darkgreen fa-lg cursor-pointer"></i>
       </div>
       <div class='h-1/2 pt-1 flex'>
-        <div data-search--search-target='category' data-action='click->search--search#openCategory' class="rounded-bl cursor-pointer bg-yellow text-darkgreen md:text-lg w-5/12 flex items-center justify-center text-center mr-1"><%= category %></div>
-        <a href="#" class="  bg-yellow text-darkgreen md:text-lg w-5/12 flex items-center justify-center text-center cursor-pointer">All criterias</a>
-        <div class="rounded-br w-2/12 cursor-pointer h-full bg-green text-yellow border-none text-center flex text-xl items-center justify-center ml-1" data-action="click->search--search#submit">
+        <div data-search--search-target='category' data-action='click->search--search#openModal' data-modal='categoryModal' class="rounded-bl cursor-pointer bg-yellow text-darkgreen md:text-lg w-5/12 flex items-center justify-center text-center mr-1"><%= category %></div>
+        <div data-search--search-target='tags' data-action='click->search--search#openModal' data-modal='tagsModal' class="rounded-bl cursor-pointer bg-yellow text-darkgreen md:text-lg w-5/12 flex items-center justify-center text-center mr-1"><%= tags.empty? ? 'All tags' : 'Selected tags' %></div>
+        <button type='submit' class="focus:outline-none font-bold rounded-br w-2/12 cursor-pointer h-full bg-green text-yellow border-none text-center flex text-xl items-center justify-center">
           <span class='hidden lg:block'>Search</span>
           <span class='lg:hidden block'><i class="fas fa-search "></i></span>
-        </div>
+        </button>
       </div>
-    </div>
+    </form>
   </div>
-  <%= render 'search/categories_modal' %>
+  <%= render Search::CardModal.new('tags', tags) %>
+  <%= render Search::CardModal.new('category', category) %>
 </div>
