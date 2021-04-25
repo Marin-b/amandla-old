@@ -1,0 +1,23 @@
+<div class='text-center'>
+  <p>
+    <span class='font-bold'><%= place.avg_rating %></span>
+    <span>
+      ( <%= pluralize(place.reviews.count, 'review') %> )
+    </span>
+  </p>
+  <div>
+    <%= render Rating::Stars.new(place.avg_rating) %>
+  </div>
+</div>
+<div class='w-3/4 mt-4'>
+  <% place.tags.each do |tag| %>
+    <div class='w-full flex mt-1'>
+      <span class='text-green w-1/6 text-center'>
+        <%= render Tag::Icon.new(tag) %>
+      </span>
+      <p>
+        <%= tag %>
+      </p>
+    </div>
+  <% end %>
+</div>

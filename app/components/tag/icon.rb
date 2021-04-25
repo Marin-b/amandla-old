@@ -1,7 +1,8 @@
 class Tag::Icon < ViewComponent::Base
-  attr_reader :tag
-  def initialize(tag)
+  attr_reader :tag, :options
+  def initialize(tag, options = { classes: 'fa-lg'} )
     @tag = tag
+    @options = options
   end
 
   def icon
