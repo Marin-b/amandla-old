@@ -6,7 +6,7 @@
         <i data-action='click->search--search#locate' class="fas fa-map-marker-alt absolute top-4 right-4 text-darkgreen fa-lg cursor-pointer"></i>
       </div>
       <div class='h-1/2 pt-1 flex'>
-        <div data-search--search-target='category' data-action='click->search--search#openModal' data-modal='categoryModal' class="rounded-bl cursor-pointer bg-yellow text-darkgreen md:text-lg w-5/12 flex items-center justify-center text-center mr-1"><%= category %></div>
+        <div data-search--search-target='category' data-action='click->search--search#openModal' data-modal='categoryModal' class="rounded-bl cursor-pointer bg-yellow text-darkgreen md:text-lg w-5/12 flex items-center justify-center text-center mr-1"><%= category || 'All categories' %></div>
         <div data-search--search-target='tags' data-action='click->search--search#openModal' data-modal='tagsModal' class="rounded-bl cursor-pointer bg-yellow text-darkgreen md:text-lg w-5/12 flex items-center justify-center text-center mr-1"><%= tags.empty? ? 'All tags' : 'Selected tags' %></div>
         <button type='submit' class="focus:outline-none font-bold rounded-br w-2/12 cursor-pointer h-full bg-green text-yellow border-none text-center flex text-xl items-center justify-center">
           <span class='hidden lg:block'>Search</span>

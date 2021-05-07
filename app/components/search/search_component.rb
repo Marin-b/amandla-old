@@ -2,7 +2,15 @@
 
 class Search::SearchComponent < ViewComponent::Base
   def category
-    session[:category] = params[:category] || session[:category]
+    return @category if @category
+
+    if params[:category] == 'clear'
+      session.delete(:category)
+    else
+      session[:category] = params[:category] || session[:category]
+    end
+
+    @category = session[:category]
   end
 
   def location
@@ -10,15 +18,23 @@ class Search::SearchComponent < ViewComponent::Base
   end
 
   def tags
-    session[:tags] = params[:tags] || session[:tags] || []
+    return @tags if @tags
+
+    if params[:tags] == ['clear']
+      session.delete(:tags)
+    else
+      session[:tags] = params[:tags] || session[:tags]
+    end
+
+    @tags = session[:tags] || []
   end
 
   def places
     places = Place.includes([banner_attachment: :blob]).includes(:category).all
 
     places = places.near(params[:location]) if location.present?
-    places = places.joins(:category).where('categories.name = ?', params[:category]) if category != 'All categories'
-    places = places.tagged_with(tags.reject { |tag| tag == 'All tags' }, any: true) if tags != ['All tags']
+    places = places.joins(:category).where('categories.name = ?', params[:category]) if category
+    places = places.tagged_with(tags.reject { |tag| tag == 'clear' }, any: true) if tags != []
     places
   end
 end

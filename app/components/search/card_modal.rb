@@ -27,11 +27,11 @@ class Search::CardModal < ViewComponent::Base
   end
 
   def input_type
-     is_tags? ?  'checkbox' : 'radio'
+     is_tags? ? 'checkbox' : 'radio'
   end
 
   def none_chosen?
-    value.split(" ").first == "All"
+    value.blank?
   end
 
   private

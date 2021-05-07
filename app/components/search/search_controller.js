@@ -34,30 +34,42 @@ export default class extends Controller {
       card.lastElementChild.checked = false
     })
     this.modal.lastElementChild.checked = true
-    this.updateLabels()
+    this.updateView()
     this.closeModal()
   }
 
   setButtonContent() {
     const inputType = this.modal.querySelector('input').type
     const button = this[this.modal.dataset.name + 'Target']
-    const checkedInput = Array.from(this.modal.querySelectorAll('input')).find(i => i.checked)
-
-    if (inputType === 'checkbox' && checkedInput !== this.modal.lastElementChild) {
+    const checkedInput = this.selectedInput()
+    console.log(checkedInput)
+    if (checkedInput === this.modal.lastElementChild) {
+      button.innerText = `All ${this.modal.dataset.name}`
+    } else if (inputType === 'checkbox') {
       button.innerText = `Selected ${this.modal.dataset.name}`
     } else {
       button.innerText = checkedInput.value
-
     }
   }
 
+  selectedInput() {
+    return Array.from(this.modal.querySelectorAll('input')).find(i => i.checked)
+  }
+
   handleSelection(e) {
-    this.updateLabels()
+    if (!this.selectedInput()) {
+      this.modal.lastElementChild.checked = true
+    } else if (this.selectedInput() != this.modal.lastElementChild.checked) {
+      this.modal.lastElementChild.checked = false
+    }
+    this.updateView()
+
     const input = e.target.closest('label').lastElementChild
 
     if (input.type === 'radio' && input.checked) {
       this.closeModal()
     }
+
   }
 
   handleBackgroundClick(e) {
@@ -66,7 +78,7 @@ export default class extends Controller {
     }
   }
 
-  updateLabels()  {
+  updateView()  {
     this.modal.querySelectorAll('label').forEach((label) => {
       const input = label.lastElementChild
       const card = label.querySelector('.flip-front')
@@ -78,6 +90,7 @@ export default class extends Controller {
         card.classList.replace('text-green', 'text-darkgreen')
       }
     })
+    this.setButtonContent()
   }
 
   locate(e){
