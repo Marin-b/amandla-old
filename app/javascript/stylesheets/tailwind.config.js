@@ -977,14 +977,7 @@ module.exports = {
     whitespace: ['responsive'],
     width: ['responsive'],
     wordBreak: ['responsive'],
-    zIndex: ['responsive', 'focus-within', 'focus'],
-  },
-  extend: {
-    typography: (theme) => ({
-      DEFAULT: {
-        css: {}
-      }
-    })
+    zIndex: ['responsive', 'focus-within', 'focus']
   },
   plugins: [
     require('@tailwindcss/typography')
