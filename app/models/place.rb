@@ -1,4 +1,6 @@
 class Place < ApplicationRecord
+  include CloudinaryHelper
+
   belongs_to :category
   belongs_to :user
   has_many :reviews
@@ -10,12 +12,11 @@ class Place < ApplicationRecord
   has_many_attached :photos
 
   acts_as_taggable_on :tags
-  def banner_url
-    if banner.attached?
-      return banner.service_url
-    end
 
-    return cl_image_path "amandla_logo"
+  def banner_url
+    return cl_image_path banner.key, secure: true if banner.attached?
+
+    cl_image_path "amandla_logo"
   end
 
   def avg_rating

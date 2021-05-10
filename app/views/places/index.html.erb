@@ -1,12 +1,19 @@
-<div class="flex w-full">
+<div data-controller='map-toggle' class="flex flex-col w-full md:flex-row">
   <div class="mx-auto pt-4 px-4 md:w-1/2 w-full content-container" data-controller='places--card'>
     <%= render @search %>
     <div class='grid xl:grid-cols-2 grid-cols-1 gap-4 mt-4'>
       <%= render Places::Card.with_collection(@search.places) %>
     </div>
   </div>
-  <div class="map w-1/2 hidden md:block sticky top-0 self-start" >
+  <div data-map-toggle-target='container' data-show='false' class="map md:w-1/2 w-full duration-300  transition-all top-full md:top-0 fixed md:sticky self-start" >
     <%= render Places::Map.new(@search.places) %>
+  </div>
+  <div class="w-full text-center bottom-2 fixed">
+    <div data-map-toggle-target='button' data-action='click->map-toggle#toggle' class='md:hidden justify-center mx-auto bg-darkgreen text-white rounded-lg shadowed-sm py-1 w-32'>
+        <i class='fas fa-map fa-sm'></i>
+        Map
+
+    </div>
   </div>
 </div>
 
