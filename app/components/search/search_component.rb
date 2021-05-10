@@ -32,8 +32,8 @@ class Search::SearchComponent < ViewComponent::Base
   def places
     places = Place.includes([banner_attachment: :blob]).includes(:category).all
 
-    places = places.near(params[:location]) if location.present?
-    places = places.joins(:category).where('categories.name = ?', params[:category]) if category
+    places = places.near(location) if location.present?
+    places = places.joins(:category).where('categories.name = ?', category) if category
     places = places.tagged_with(tags.reject { |tag| tag == 'clear' }, any: true) if tags != []
     places
   end

@@ -4,6 +4,7 @@ module.exports = {
   purge: [
     './app/**/*.erb',
     './app/**/*.js',
+    './app/components/**/*.rb',
     './app/javascript/stylesheets/**/*.scss'
   ],
   presets: [],
