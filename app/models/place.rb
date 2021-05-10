@@ -15,7 +15,7 @@ class Place < ApplicationRecord
 
   def banner_url
     if banner.attached?
-      return cl_image_path banner.key
+      return cl_image_path banner.key, secure: true
     end
 
     return cl_image_path "amandla_logo"
