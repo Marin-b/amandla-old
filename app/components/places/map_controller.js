@@ -18,8 +18,11 @@ export default class extends Controller {
   attachMarkers() {
     const markers = JSON.parse(this.containerTarget.dataset.markers)
     markers.forEach((marker) => {
+      const popup = new mapboxgl.Popup().setHTML(marker.info_window);
+
       new mapboxgl.Marker(this.htmlToElement(marker.marker))
         .setLngLat([ marker.lng, marker.lat ])
+        .setPopup(popup)
         .addTo(this.map);
     });
     const bounds = new mapboxgl.LngLatBounds();

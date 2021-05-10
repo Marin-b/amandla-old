@@ -1,0 +1,15 @@
+.mapboxgl-popup-content {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.mapboxgl-popup{
+  z-index: 51;
+}
+
+.mapboxgl-popup-tip{
+  display: none;
+}
+
+.mapboxgl-popup-close-button {
+  display: none;
+}
