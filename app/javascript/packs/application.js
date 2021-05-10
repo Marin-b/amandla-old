@@ -31,3 +31,11 @@ document.addEventListener('turbolinks:load', () => {
 });
 
 import "controllers"
+
+
+window.addEventListener('load', () => {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(registration => {
+      console.log('ServiceWorker registered: ', registration)
+    });
+});
