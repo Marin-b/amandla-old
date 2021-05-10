@@ -6,7 +6,8 @@
     <link rel="manifest" href="/manifest.json">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta name="theme-color" content="#1D373C"/>
-
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Amandla">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -24,5 +25,6 @@
     <div class="<%= contained && 'content-container' %>">
       <%= yield %>
     </div>
+     <%= render 'shared/a2hs' %>
   </body>
 </html>
