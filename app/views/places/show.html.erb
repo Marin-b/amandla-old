@@ -48,7 +48,7 @@
       </h3>
       <div class="h-44 md:h-60 flex overflow-x-scroll mt-4 whitespace-nowrap">
         <% @place.photos.each do |photo| %>
-          <div class='flex-shrink-0 h-full w-44 md:w-60 rounded bg-cover mr-4' style='background-image: url(<%= photo.url %>) '>
+          <div class='flex-shrink-0 h-full w-44 md:w-60 rounded bg-cover mr-4' style='background-image: url(<%= cl_image_path photo.key %>) '>
           </div>
         <% end %>
       </div>
