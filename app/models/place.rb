@@ -14,11 +14,9 @@ class Place < ApplicationRecord
   acts_as_taggable_on :tags
 
   def banner_url
-    if banner.attached?
-      return cl_image_path banner.key, secure: true
-    end
+    return cl_image_path banner.key, secure: true if banner.attached?
 
-    return cl_image_path "amandla_logo"
+    cl_image_path "amandla_logo"
   end
 
   def avg_rating

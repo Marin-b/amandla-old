@@ -1,12 +1,18 @@
-<div class="flex w-full">
+<div class="flex flex-col w-full md:flex-row">
   <div class="mx-auto pt-4 px-4 md:w-1/2 w-full content-container" data-controller='places--card'>
     <%= render @search %>
     <div class='grid xl:grid-cols-2 grid-cols-1 gap-4 mt-4'>
       <%= render Places::Card.with_collection(@search.places) %>
     </div>
   </div>
-  <div class="map w-1/2 hidden md:block sticky top-0 self-start" >
+  <div id='map-container'class="map w-1/2 top-full md:top-0 fixed md:sticky self-start" >
     <%= render Places::Map.new(@search.places) %>
+  </div>
+  <div class='block md:hidden flex align-center fixed bottom-2 w-full text-center'>
+    <div class='bg-darkgreen text-white rounded-lg shadowed-sm m-auto py-1 px-8'>
+      <i class='fas fa-map fa-sm'></i>
+      Map
+    </div>
   </div>
 </div>
 
