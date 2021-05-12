@@ -1,8 +1,8 @@
 <div id="<%= name %>Modal" data-action='click->search--search#handleBackgroundClick' class="hidden animated fixed inset-0 overflow-y-auto flex items-center justify-center bg-gray-800 bg-opacity-50" data-name='<%= name %>' style="z-index: 9999;">
   <div class="max-h-screen w-full max-w-xl relative">
-    <div class="m-1 bg-transparent rounded grid grid-cols-2 md:grid-cols-3 gap-5 px-5">
+    <div class="m-1 bg-transparent rounded grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-5 px-5">
       <% items.each_with_index do |item, i| %>
-        <label for='<%= item.name %>' data-action='click->search--search#handleSelection' class="flip h-36 <%= 'flipped' if is_selected?(item) %>">
+        <label for='<%= item.name %>' data-action='click->search--search#handleSelection' class="flip md:h-36 h-28 <%= 'flipped' if is_selected?(item) %>">
           <div class='flip-content h-full <%= "delay-#{i * 50}" %>'  >
             <div class="flip-front bg-yellow  <%= is_selected?(item) ? 'border-green text-green' : 'border-darkgreen text-darkgreen' %> category-card h-full relative" >
               <%= render icon(item) %>
