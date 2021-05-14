@@ -1239,6 +1239,11 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
+"@zirkeldesign/tailwindcss-stuck-variant@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@zirkeldesign/tailwindcss-stuck-variant/-/tailwindcss-stuck-variant-0.2.1.tgz#523f99e29841af5113d0c81cf9932e0bdca0ee4d"
+  integrity sha512-PiYsZAfertiYQcqLJN74iDRzlNlxFtf2GOUeX6eqaq/YvItLwz1ALiCED8meo5WIDIjvQ0/WbO7fXJ4BjblQYg==
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"

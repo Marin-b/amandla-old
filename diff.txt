@@ -1,0 +1,141 @@
+diff --git a/app/javascript/packs/application.js b/app/javascript/packs/application.js
+index 44ef341..803847e 100644
+--- a/app/javascript/packs/application.js
++++ b/app/javascript/packs/application.js
+@@ -7,6 +7,7 @@ import Rails from "@rails/ujs"
+ import Turbolinks from "turbolinks"
+ import * as ActiveStorage from "@rails/activestorage"
+ import "channels"
++require("@zirkeldesign/tailwindcss-stuck-variant/src/observer")();
+ 
+ Rails.start()
+ Turbolinks.start()
+diff --git a/app/javascript/stylesheets/application.scss b/app/javascript/stylesheets/application.scss
+index 3b769d5..c32a0b4 100644
+--- a/app/javascript/stylesheets/application.scss
++++ b/app/javascript/stylesheets/application.scss
+@@ -10,7 +10,7 @@
+   margin-top: theme('spacing.12');
+   min-height: calc(100vh - theme('spacing.12'));
+   @screen md {
+-    margin-top: theme('spacing.20');
++    margin-top: theme('spacing.16');
+     min-height: calc(100vh - theme('spacing.20'));
+   }
+ }
+diff --git a/app/javascript/stylesheets/components/_map.scss b/app/javascript/stylesheets/components/_map.scss
+index e7c6978..bdea213 100644
+--- a/app/javascript/stylesheets/components/_map.scss
++++ b/app/javascript/stylesheets/components/_map.scss
+@@ -2,8 +2,8 @@
+   top: theme('spacing.12');
+   height: calc(100vh - theme('spacing.12'));
+   @screen md {
+-    top: theme('spacing.20');
+-    height: calc(100vh - theme('spacing.20'));
++    top: theme('spacing.16');
++    height: calc(100vh - theme('spacing.16'));
+   }
+ }
+ 
+diff --git a/app/javascript/stylesheets/tailwind.config.js b/app/javascript/stylesheets/tailwind.config.js
+index 205c8f4..08d9cc9 100644
+--- a/app/javascript/stylesheets/tailwind.config.js
++++ b/app/javascript/stylesheets/tailwind.config.js
+@@ -836,6 +836,7 @@ module.exports = {
+     'focus-within',
+     'hover',
+     'focus',
++    'stuck',
+     'focus-visible',
+     'active',
+     'disabled',
+@@ -860,7 +861,7 @@ module.exports = {
+     backgroundAttachment: ['responsive'],
+     backgroundBlendMode: ['responsive'],
+     backgroundClip: ['responsive'],
+-    backgroundColor: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
++    backgroundColor: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus', 'stuck'],
+     backgroundImage: ['responsive'],
+     backgroundOpacity: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
+     backgroundPosition: ['responsive'],
+@@ -985,6 +986,7 @@ module.exports = {
+     zIndex: ['responsive', 'focus-within', 'focus']
+   },
+   plugins: [
+-    require('@tailwindcss/typography')
++    require('@tailwindcss/typography'),
++    require("@zirkeldesign/tailwindcss-stuck-variant")
+   ]
+ }
+diff --git a/app/views/places/show.html.erb b/app/views/places/show.html.erb
+index 5f11bdf..41382a4 100644
+--- a/app/views/places/show.html.erb
++++ b/app/views/places/show.html.erb
+@@ -1,12 +1,12 @@
+ <div class='h-v1/2 md:h-v3/4 bg-cover bg-center bg-no-repeat' style='background-image:  url(<%= @place.banner_url %>)'>
+ </div>
+-<div class='container px-4 md:px-0 mx-auto grid grid-cols-12 gap-8 -mt-8 md:-mt-12'>
++<div class='container px-4 md:px-0 mx-auto grid grid-cols-12 gap-8 -mt-8 md:-mt-12 relative' >
+   <div class='col-span-12 md:col-span-8'>
+-    <div class='text-center bg-white py-2 md:py-4 flex-col shadow-md items-center justify-center rounded-xl w-full'>
++    <div class='sticky top-10 md:top-20 stuck:bg-darkgreen z-50 text-center bg-white py-2 md:py-4 flex-col shadow-md items-center justify-center rounded-xl w-full'>
+       <h1 class='text-darkgreen font-title text-xl md:text-4xl md:mb-2'>
+         <%= @place.name %>
+       </h1>
+-      <h6 class='text-yellow md:text-xl text-base font-sans'>
++      <h6 class='text-yellow md:text-xl text-base font-sans hidden'>
+         <%= @place.category.name %>
+       </h6>
+     </div>
+@@ -75,8 +75,10 @@
+       </p>
+     </div>
+   </div>
+-  <div class="col-span-4 h-48 bg-white shadow-md rounded-xl hidden md:flex flex-col items-center p-4">
+-    <%= render 'side', place: @place %>
++  <div class='col-span-4'>
++    <div class="sticky top-10 md:top-20 z-50 h-48 bg-white shadow-md rounded-xl hidden md:flex flex-col items-center p-4">
++      <%= render 'side', place: @place %>
++    </div>
+   </div>
+ </div>
+ 
+diff --git a/app/views/shared/_navbar.html.erb b/app/views/shared/_navbar.html.erb
+index 8e750cb..a99497e 100644
+--- a/app/views/shared/_navbar.html.erb
++++ b/app/views/shared/_navbar.html.erb
+@@ -1,4 +1,4 @@
+-<nav class="nav flex flex-wrap md:h-20 h-12 items-center justify-between px-4 fixed w-full top-0 z-50 <%= transparent ? 'bg-transparent ' : 'bg-darkgreen' %>">
++<nav class="nav flex flex-wrap md:h-16 h-12 items-center justify-between px-4 fixed w-full top-0 z-50 <%= transparent ? 'bg-transparent ' : 'bg-darkgreen' %>">
+   <div class='<%= contained && "container mx-auto" %>'>
+     <%= link_to root_path do %>
+       <%= small_logo unless transparent %>
+diff --git a/package.json b/package.json
+index f977f06..a9ca36e 100644
+--- a/package.json
++++ b/package.json
+@@ -7,6 +7,7 @@
+     "@rails/ujs": "^6.0.0",
+     "@rails/webpacker": "5.2.1",
+     "@tailwindcss/typography": "^0.4.0",
++    "@zirkeldesign/tailwindcss-stuck-variant": "^0.2.1",
+     "autoprefixer": "^9",
+     "mapbox-gl": "^2.2.0",
+     "postcss": "^7",
+diff --git a/yarn.lock b/yarn.lock
+index c3e1c9f..93aafea 100644
+--- a/yarn.lock
++++ b/yarn.lock
+@@ -1239,6 +1239,11 @@
+   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
+   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
+ 
++"@zirkeldesign/tailwindcss-stuck-variant@^0.2.1":
++  version "0.2.1"
++  resolved "https://registry.yarnpkg.com/@zirkeldesign/tailwindcss-stuck-variant/-/tailwindcss-stuck-variant-0.2.1.tgz#523f99e29841af5113d0c81cf9932e0bdca0ee4d"
++  integrity sha512-PiYsZAfertiYQcqLJN74iDRzlNlxFtf2GOUeX6eqaq/YvItLwz1ALiCED8meo5WIDIjvQ0/WbO7fXJ4BjblQYg==
++
+ abbrev@1:
+   version "1.1.1"
+   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"

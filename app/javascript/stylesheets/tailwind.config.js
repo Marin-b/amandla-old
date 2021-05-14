@@ -836,6 +836,7 @@ module.exports = {
     'focus-within',
     'hover',
     'focus',
+    'stuck',
     'focus-visible',
     'active',
     'disabled',
@@ -860,7 +861,7 @@ module.exports = {
     backgroundAttachment: ['responsive'],
     backgroundBlendMode: ['responsive'],
     backgroundClip: ['responsive'],
-    backgroundColor: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
+    backgroundColor: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus', 'stuck'],
     backgroundImage: ['responsive'],
     backgroundOpacity: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
     backgroundPosition: ['responsive'],
@@ -985,6 +986,7 @@ module.exports = {
     zIndex: ['responsive', 'focus-within', 'focus']
   },
   plugins: [
-    require('@tailwindcss/typography')
+    require('@tailwindcss/typography'),
+    require("@zirkeldesign/tailwindcss-stuck-variant")
   ]
 }

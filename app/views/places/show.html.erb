@@ -1,12 +1,12 @@
 <div class='h-v1/2 md:h-v3/4 bg-cover bg-center bg-no-repeat' style='background-image:  url(<%= @place.banner_url %>)'>
 </div>
-<div class='container px-4 md:px-0 mx-auto grid grid-cols-12 gap-8 -mt-8 md:-mt-12'>
+<div class='container px-4 md:px-0 mx-auto grid grid-cols-12 gap-8 -mt-8 md:-mt-12 relative' >
   <div class='col-span-12 md:col-span-8'>
-    <div class='text-center bg-white py-2 md:py-4 flex-col shadow-md items-center justify-center rounded-xl w-full'>
+    <div class='sticky top-10 md:top-20 stuck:bg-darkgreen z-50 text-center bg-white py-2 md:py-4 flex-col shadow-md items-center justify-center rounded-xl w-full'>
       <h1 class='text-darkgreen font-title text-xl md:text-4xl md:mb-2'>
         <%= @place.name %>
       </h1>
-      <h6 class='text-yellow md:text-xl text-base font-sans'>
+      <h6 class='text-yellow md:text-xl text-base font-sans hidden'>
         <%= @place.category.name %>
       </h6>
     </div>
@@ -75,8 +75,10 @@
       </p>
     </div>
   </div>
-  <div class="col-span-4 h-48 bg-white shadow-md rounded-xl hidden md:flex flex-col items-center p-4">
-    <%= render 'side', place: @place %>
+  <div class='col-span-4'>
+    <div class="sticky top-10 md:top-20 z-50 h-48 bg-white shadow-md rounded-xl hidden md:flex flex-col items-center p-4">
+      <%= render 'side', place: @place %>
+    </div>
   </div>
 </div>
 
